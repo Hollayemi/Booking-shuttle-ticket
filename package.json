@@ -3,24 +3,23 @@
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
-      "start": "node server.js",
-      "dev": "supervisor server.js",
-      "build": "node build"
+        "start": "node server.js",
+        "dev": "supervisor server.js",
+        "build": "node build"
     },
     "keywords": [],
     "author": "Stephen Olayemi & John",
     "license": "ISC",
     "dependencies": {
-      "@hapi/joi": "^17.1.1",
-      "bcryptjs": "^2.4.3",
-      "cors": "^2.8.5",
-      "env": "^0.0.2",
-      "express": "^4.18.0",
-      "jsonwebtoken": "^8.5.1",
-      "mongoose": "^6.3.1",
-      "supervisor": "^0.12.0"
+        "@hapi/joi": "^17.1.1",
+        "bcryptjs": "^2.4.3",
+        "cors": "^2.8.5",
+        "dotenv": "^16.0.3",
+        "env": "^0.0.2",
+        "express": "^4.18.0",
+        "jsonwebtoken": "^8.5.1",
+        "mongoose": "^6.3.1",
+        "supervisor": "^0.12.0"
     },
-    "description": "This project is to dectect parking slot",
-    "devDependencies": {}
-  }
-  
+    "description": "This project is to dectect parking slot"
+}
