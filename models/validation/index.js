@@ -14,7 +14,7 @@ const ValidateAccount = data => {
 
 const validateLogin = data => {
     const schema = Joi.object({
-        email: Joi.string().email().required(),
+        email: Joi.string().required(),
         password: Joi.string().required(),
     })
 

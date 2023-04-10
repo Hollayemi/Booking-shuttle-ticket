@@ -6,7 +6,7 @@ const Account = new mongoose.Schema({
     register_id: {type: String, required: true},
     register_as: {type: String, required: true},
     password: {type: String, required: true},
-    
+    wallet: {type: Number, default: 0},
 })
 
 module.exports = mongoose.model("accounts", Account);

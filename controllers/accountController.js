@@ -34,7 +34,7 @@ exports.createAccount = async(req, res) => {
 
 exports.accountLogin = async (req, res) => {
     const {error} = validateLogin(req.body);
-    const userInfo = await Account.findOne({email: req.body.email})    
+    const userInfo = await Account.findOne({$or: [{email: req.body.email}, {register_id: req.body.email}]})    
     
     try {
         if(error){

@@ -35,6 +35,15 @@ exports.getPickups = async(req, res) => {
     }
 }
 
+exports.getPickup = async(req, res) => {
+    try {
+        const myPickups = await NewPickup.findOne({ _id: req.params.id  });
+        return res.status(200).json({data: myPickups, status: "success"})
+    } catch (error) {
+        return res.status(500).json({message: 'unable to fetch data', status: "error"})
+    }
+}
+
 exports.updatePickup = async(id, car_no) => {
     await NewPickup.findOneAndUpdate({_id: id},{
             $set: {pickedBy: car_no}

@@ -15,7 +15,7 @@ app.use(express.json());
 app.use('/aau_shuttle', auth);
 app.use('/aau_shuttle', pickups);
 
-mongoose.connect('mongodb://127.0.0.1:27017/aaua_shuttle', {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(process.env.LOCAL_MONGO_URL, {useNewUrlParser: true, useUnifiedTopology: true})
 .then(() =>{
     console.log('database connected ')
 }).catch((err) => {
