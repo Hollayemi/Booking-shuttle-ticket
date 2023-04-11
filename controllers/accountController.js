@@ -50,6 +50,7 @@ exports.accountLogin = async (req, res) => {
                     const accessToken = jwt.sign(
                         {
                             userId: userInfo._id,
+                            email: userInfo._doc.email,
                         },
                         process.env.JWT_USER_TOKEN,
                         {expiresIn:"60h"}
