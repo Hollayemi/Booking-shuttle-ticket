@@ -6,7 +6,7 @@ const ValidateAccount = data => {
         email: Joi.string().required().email(),
         password: Joi.string().required(),
         register_as: Joi.string().required(),
-        register_id: Joi.string().required(),
+        register_id: Joi.string().allow(''),
     })
 
     return schema.validate(data)

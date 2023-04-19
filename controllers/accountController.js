@@ -16,6 +16,10 @@ exports.createAccount = async(req, res) => {
     try {
         if(!error){
             if(!exists){
+                const {register_as, register_id} = req.body
+                if (register_as === 'Driver' && register_id.length === 0){
+                    return res.status(404).json({message: 'Car number is required', status: "error"})
+                }
                 const saveInfo = await newAccount.save()
                 console.log(saveInfo)
                 return res.status(201).json({ data: saveInfo, message: 'Account Created', status: "success"})
@@ -26,6 +30,7 @@ exports.createAccount = async(req, res) => {
             return res.status(501).json({message:error.details[0].message, status:"error"})
         }
     } catch (error) {
+        console.log(error);
         return res.status(500).json({message: error, status: "error"})
     }
 }
@@ -34,7 +39,7 @@ exports.createAccount = async(req, res) => {
 
 exports.accountLogin = async (req, res) => {
     const {error} = validateLogin(req.body);
-    const userInfo = await Account.findOne({$or: [{email: req.body.email}, {register_id: req.body.email}]})    
+    const userInfo = await Account.findOne({email: req.body.email})    
     
     try {
         if(error){
@@ -51,12 +56,13 @@ exports.accountLogin = async (req, res) => {
                         {
                             userId: userInfo._id,
                             email: userInfo._doc.email,
+                            car_no: userInfo._doc.register_id
                         },
                         process.env.JWT_USER_TOKEN,
                         {expiresIn:"60h"}
                     )
                     const {password, ...otherDetails} = userInfo._doc;
-                    return res.status(201).send({ data:{...otherDetails, accessToken}, message:'logged in', status: "success"});
+                    return res.status(201).send({ data:{...otherDetails, accessToken}, message:'Welcome Back', status: "success"});
                 }
             }
         }
